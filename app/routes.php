@@ -77,6 +77,10 @@ Route::group(array('before' => 'auth'), function()
 
 		Route::resource('empresas', 'EmpresasController');
 
+		Route::resource('constancias', 'ConstanciasController');
+
+		Route::resource('representantes', 'RepresentantesController');
+
 	});
 
 });
