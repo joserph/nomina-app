@@ -28,6 +28,12 @@
         {{ Form::text('nombre', null, array('class' => 'form-control', 'placeholder' =>'Nombre del Trabajador')) }}
       </div>
       <div class="col-md-12">
+        {{ Form::label('nacionalidad', 'Nacionalidad:') }}
+        {{ Form::select('nacionalidad', array(
+        'V-' => 'Venezolano',
+        'E-' => 'Extranjero'), null, ['class' => 'form-control']) }}
+      </div>
+      <div class="col-md-12">
         {{ Form::label('ci', 'C.I.:') }}
         {{ Form::text('ci', null, array('class' => 'form-control', 'placeholder' =>'Cédula del Trabajador')) }}
       </div>

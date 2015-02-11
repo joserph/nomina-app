@@ -17,6 +17,7 @@ class CreateConstanciasTable extends Migration {
 		    $table->increments('id');
 
 		    $table->string('nombre');
+		    $table->string('nacionalidad');
 		    $table->string('ci');
 		    $table->date('fecha_ingreso');
 		    $table->string('cargo');

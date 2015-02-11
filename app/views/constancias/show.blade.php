@@ -6,19 +6,25 @@
   <blockquote>
   <dl class="dl-horizontal">
     <dt>Nombre:</dt>
-    <dd>{{ $constancias->nombre }}</dd>
+    <dd class="text-uppercase">{{ $constancias->nombre }}</dd>
     <dt>C.I.:</dt>
-    <dd>{{ $constancias->ci }}</dd>
+    <dd>{{ $constancias->nacionalidad }}{{ number_format($constancias->ci,0,",",".") }}</dd>
     <dt>Fecha de Ingreso:</dt>
-    <dd>{{ $constancias->fecha_ingreso }}</dd>
+    <dd>{{ date("d/m/Y", strtotime($constancias->fecha_ingreso)) }}</dd>
     <dt>Cargo:</dt>
     <dd>{{ $constancias->cargo }}</dd>
     <dt>Sueldo:</dt>
-    <dd>{{ $constancias->sueldo }}</dd>
+    <dd>{{ number_format($constancias->sueldo,2,",",".") }}</dd>
     <dt>Fecha de Constancia:</dt>
-    <dd>{{ $constancias->fecha }}</dd>
+    <dd>{{ date("d/m/Y", strtotime($constancias->fecha)) }}</dd>
     <dt>Representante Legal:</dt>
-    <dd>{{ $constancias->id_representante }}</dd>
+    <dd>
+      @foreach($representantes as $representante)
+        @if($representante->id == $constancias->id_representante)
+          {{ $representante->nombre }}
+        @endif
+      @endforeach
+    </dd>
   </dl>
   <small><strong>Creado el 
     <cite title="Source Title">
@@ -49,5 +55,5 @@
     </strong>
   </small>
   </blockquote>
-     
+  <a href="{{ route('constanciaPdf', $constancias->id) }}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Constancia</a>
 @stop

@@ -10,6 +10,7 @@ class Constancia extends Eloquent implements UserInterface, RemindableInterface
 
 	protected $fillable = array(
 		'nombre',
+        'nacionalidad',
 		'ci',
 	    'fecha_ingreso',
 	    'cargo',

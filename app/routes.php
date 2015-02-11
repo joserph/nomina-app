@@ -81,6 +81,10 @@ Route::group(array('before' => 'auth'), function()
 
 		Route::resource('representantes', 'RepresentantesController');
 
+		Route::get('/constanciaPdf/{id}', array(
+			'as' => 'constanciaPdf',
+			'uses' => 'PdfController@getIndexCons'
+		));
 	});
 
 });

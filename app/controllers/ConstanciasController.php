@@ -54,7 +54,7 @@ class ConstanciasController extends \BaseController
 	{
 		$constancias = Constancia::find($id);
         $users = User::all();
-        
+        $representantes = Representante::all();
 		if (is_null($constancias))
 		{
 			App::abort(404);
@@ -62,7 +62,8 @@ class ConstanciasController extends \BaseController
 
 		return View::make('constancias.show', array(
             'constancias' => $constancias,
-            'users' => $users
+            'users' => $users,
+            'representantes' => $representantes
             )
         );
 	}

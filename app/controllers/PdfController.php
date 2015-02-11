@@ -22,19 +22,17 @@ class PdfController extends BaseController {
 		return $pdf->stream();
 	}
 
-	/*public function getIndexIslr($id)
+	public function getIndexCons($id)
 	{
-		$reportesislr = Reporteislr::find($id);
-		$facturasislr = DB::table('facturasislr')->where('id_reporteislr', '=', $id)->get();
-		$agentes = Agente::find(1);
-		$proveedores = Empleado::all();
-		$pdf = PDF::loadView('pdfislr', array(
-			'reportesislr' => $reportesislr, 
-			'facturasislr' => $facturasislr, 
-			'agentes' => $agentes,
-			'proveedores' => $proveedores
-			))->setPaper('Carta')->setOrientation('landscape');
+		$constancia = Constancia::find($id);
+		$empresa = Empresa::first();
+		$representantes = Representante::all();
+		$pdf = PDF::loadView('constanciaPdf', array(
+			'constancia' => $constancia,
+			'empresa' => $empresa,
+			'representantes' => $representantes
+			))->setPaper('Carta');
 		return $pdf->stream();
-	}*/
+	}
 
 }
