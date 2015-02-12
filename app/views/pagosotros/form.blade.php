@@ -2,10 +2,10 @@
 
 <?php
   if ($pagos->exists):
-      $form_data = array('route' => array('pagos.update', $pagos->id), 'method' => 'PATCH');
+      $form_data = array('route' => array('pagosotros.update', $pagos->id), 'method' => 'PATCH');
       $action    = 'Editar';
   else:
-      $form_data = array('route' => 'pagos.store', 'method' => 'POST');
+      $form_data = array('route' => 'pagosotros.store', 'method' => 'POST');
       $action    = 'Crear';        
   endif;
 ?>
@@ -25,7 +25,7 @@
     faltas = $('#faltas'+i).val();
     diasLab = $('#dias_lab'+i).val();
     ct = $('#ct'+i).val();
-    vales = $('#vales'+i).val();
+    vales = 0;  
     sueldo = $('#sueldo'+i).val();
     sueldoDiario = sueldo/30;
     pago = (15 - faltas) * sueldoDiario;
@@ -80,9 +80,10 @@
     <div class="checkbox col-md-3">
       <input type="checkbox" id="casilla1" value="1" onclick="desactivar()" checked="checked"> Colocar manualmente 
     </div>
-    
-      {{ Form::hidden('vales', null, array('class' => 'form-control', 'placeholder' =>'', 'id' => 'vales1', 'onkeyup' => 'calcular(1)')) }}
-    
+    <div class="col-md-4">
+      {{ Form::label('vales', 'Vales:') }} 
+      {{ Form::text('vales', null, array('class' => 'form-control', 'placeholder' =>'', 'id' => 'vales1', 'onkeyup' => 'calcular(1)')) }}
+    </div>
     <div class="col-md-4">
       {{ Form::label('pago', 'Pago Sueldo:') }}
       {{ Form::text('pago', null, array('class' => 'form-control', 'placeholder' =>'Sueldo', 'id' => 'pago1', 'onkeyup' => 'calcular(1)')) }}
@@ -104,7 +105,7 @@
   {{ Form::close() }}
   <p>
     @if ($action == 'Editar')  
-      {{ Form::model($pagos, array('route' => array('pagos.destroy', $pagos->id), 'method' => 'DELETE', 'role' => 'form')) }}
+      {{ Form::model($pagos, array('route' => array('pagosotros.destroy', $pagos->id), 'method' => 'DELETE', 'role' => 'form')) }}
         <div class="row">
           <div class="form-group col-md-4">
               {{ Form::submit('Eliminar pago', array('class' => 'btn btn-danger')) }}

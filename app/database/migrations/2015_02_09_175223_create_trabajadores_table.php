@@ -31,6 +31,7 @@ class CreateTrabajadoresTable extends Migration {
 		    $table->string('cargo');
 		    $table->string('tipo');
 		    $table->string('sueldo');
+		    $table->string('sueldo_otro');
 		    $table->string('ct');
 		    $table->string('estatus');
 		    $table->integer('id_user');

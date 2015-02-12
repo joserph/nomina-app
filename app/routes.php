@@ -85,6 +85,17 @@ Route::group(array('before' => 'auth'), function()
 			'as' => 'constanciaPdf',
 			'uses' => 'PdfController@getIndexCons'
 		));
+
+		Route::resource('recibosotros', 'RecibosOtrosController');
+
+		Route::resource('asigdedusotros', 'AsigDedusotrosController');
+
+		Route::resource('pagosotros', 'PagosotrosController');
+
+		Route::get('/reportesotroPdf/{id}', array(
+			'as' => 'reportesotroPdf',
+			'uses' => 'PdfController@getIndexOtro'
+		));
 	});
 
 });

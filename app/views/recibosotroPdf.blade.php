@@ -115,20 +115,23 @@
 			padding-right: 611.5px;
 		}
 		p.recorte{
-			padding-top: 50px;
-			padding-bottom: 30px;
+			padding-top: 0px;
+			padding-bottom: 0px;
+		}
+		table.info1{
+			padding-bottom: 33.5px;
 		}
 	</style>
 </head>
 <body>
 	@foreach($pagos as $pago)
 		
-		<p class="idRecibo">Recibo No. 
-		@foreach($trabajadores as $trabajador)
-			@if($trabajador->id == $pago->id_trabajador)
-				{{ $trabajador->id }}
-			@endif
-		@endforeach
+		<p class="idRecibo">Recibo No.
+			@foreach($trabajadores as $trabajador)
+				@if($trabajador->id == $pago->id_trabajador)
+					{{ $trabajador->id }}
+				@endif
+			@endforeach
 		</p>
 		<h4 class="empresa">{{ $empresa->nombre }}</h4>
 		<p class="rif">RIF.: {{ $empresa->rif }}</p>
@@ -286,167 +289,7 @@
 				<th class="obser">Observaciones:</th>
 			</tr>
 		</table>
-		<p class="recorte">----------------------------------------------------------------------------------------------------------------------------------------</p>
-		<!--//////////////******************************//////////////////////-->
-
-		<p class="idRecibo">Recibo No. {{ $pago->id }}</p>
-		<h4 class="empresa">{{ $empresa->nombre }} <span>Copia Trabajador</span></h4>
-		<p class="rif">RIF.: {{ $empresa->rif }}</p>
-		<p class="titulo">RECIBO DE NOMINA</p>
-		<table class="table">
-			<tr>
-				<th class="table1">Nombre del Trabajador</th>
-				<th class="table1">Cargo</th>
-				<th class="table1">Cedula de Identidad</th>
-			</tr>
-			<tr>
-				@foreach($trabajadores as $trabajador)
-					@if($trabajador->id == $pago->id_trabajador)
-						<td class="table1">{{ $trabajador->nombre }} {{ $trabajador->apellido }}</td>
-						<td class="table1">{{ $trabajador->cargo }}</td>
-						<td class="table1">{{ number_format($trabajador->ci,0,",",".") }}</td>
-					@endif
-				@endforeach
-			</tr>
-		</table>
-		<table class="lapso">
-			<tr>
-				<th class="lapso1">Desde el:</th>
-				<th class="lapso1">Hasta el:</th>
-			</tr>
-			<tr>
-				<td class="lapso1">{{ date("d/m/Y", strtotime($recibo->desde)) }}</td>
-				<td class="lapso1">{{ date("d/m/Y", strtotime($recibo->hasta)) }}</td>
-			</tr>
-		</table>
-		
-		<table class="desc">
-			<tr>
-				<th class="desc0">Concepto</th>
-				<th class="desc2">Dias/Horas</th>
-				<th class="desc1">Asignaciones</th>
-				<th class="desc1">Deducciones</th>
-				<th class="desc1">Saldo/Acum.</th>
-			</tr>
-			<tr class="quincena2">
-				@foreach($asigdedus as $asigdedu)
-					@foreach($conceptos as $concepto)
-						@if($pago->asig1 == $asigdedu->id)
-							@if($asigdedu->id_concepto == $concepto->id)
-								<td class="quincena0">{{ $concepto->codigo }} {{ $concepto->descripcion }}</td>
-							@endif
-						@endif
-					@endforeach
-				@endforeach
-				
-				<td class="quincena1">{{ $pago->dias }}</td>
-				<td class="quincena1">{{ number_format($pago->pago,2,",",".") }}</td>
-				<td class="quincena1"></td>
-				<?php
-					$acum = $pago->pago + $pago->pago_ct;
-				?>
-				<td class="quincena1">{{ number_format($acum,2,",",".") }}</td>
-			</tr>
-			<tr>
-				<td class="espacio"></td>
-				<td class="espacio"></td>
-				<td class="espacio"></td>
-				<td class="espacio"></td>
-				<td class="espacio"></td>
-			</tr>
-			<tr>
-				@foreach($asigdedus as $asigdedu)
-					@foreach($conceptos as $concepto)
-						@if($pago->asig2 == $asigdedu->id)
-							@if($asigdedu->id_concepto == $concepto->id)
-								<td class="quincena0">{{ $concepto->codigo }} {{ $concepto->descripcion }}</td>
-							@endif
-						@endif
-					@endforeach
-				@endforeach
-				<td class="quincena1">{{ $pago->laborados }}</td>
-				<td class="quincena1">{{ number_format($pago->pago_ct,2,",",".") }}</td>
-				<td class="quincena1"></td>
-				<td class="quincena1"></td>
-			</tr>
-			<tr>
-				@foreach($asigdedus as $asigdedu)
-					@foreach($conceptos as $concepto)
-						@if($pago->asig3 == $asigdedu->id)
-							@if($asigdedu->id_concepto == $concepto->id)
-								<td class="quincena0">{{ $concepto->codigo }} {{ $concepto->descripcion }}</td>
-							@endif
-						@endif
-					@endforeach
-				@endforeach
-				<td class="quincena1"></td>
-				<td class="quincena1"></td>
-				<td class="quincena1">{{ number_format($pago->ivss,2,",",".") }}</td>
-				<td class="quincena1"></td>
-			</tr>
-			<tr>
-				@foreach($asigdedus as $asigdedu)
-					@foreach($conceptos as $concepto)
-						@if($pago->asig4 == $asigdedu->id)
-							@if($asigdedu->id_concepto == $concepto->id)
-								<td class="quincena0">{{ $concepto->codigo }} {{ $concepto->descripcion }}</td>
-							@endif
-						@endif
-					@endforeach
-				@endforeach
-				<td class="quincena1"></td>
-				<td class="quincena1"></td>
-				<td class="quincena1">{{ number_format($pago->pf,2,",",".") }}</td>
-				<td class="quincena1"></td>
-			</tr>
-			<tr>
-				@foreach($asigdedus as $asigdedu)
-					@foreach($conceptos as $concepto)
-						@if($pago->asig5 == $asigdedu->id)
-							@if($asigdedu->id_concepto == $concepto->id)
-								<td class="quincena0">{{ $concepto->codigo }} {{ $concepto->descripcion }}</td>
-							@endif
-						@endif
-					@endforeach
-				@endforeach
-				<td class="quincena1"></td>
-				<td class="quincena1"></td>
-				<td class="quincena1">{{ number_format($pago->ph,2,",",".") }}</td>
-				<td class="quincena1"></td>
-			</tr>
-			<tr>
-				<?php
-					$totalAsig = $pago->pago + $pago->pago_ct;
-					$totalDeduc = $pago->ivss + $pago->pf + $pago->ph;
-				?>
-				<th class="total1" colspan="2">Totales</th>
-				<th class="total1">{{ number_format($totalAsig,2,",",".") }}</th>
-				<th class="total1">{{ number_format($totalDeduc,2,",",".") }}</th>
-				<th class="total1"></th>
-			</tr>
-			<tr>
-				<?php
-					$totalPago = $totalAsig - $totalDeduc
-				?>
-				<th class="total1" colspan="3">Neto a cobrar</th>
-				<th class="total1">{{ number_format($totalPago,2,",",".") }}</th>
-				<th class="total1"></th>
-			</tr>
-		</table>
-		
-		<table class="info">
-			<tr>
-				<th class="info1" colspan="3">Firma del Trabajador</th>
-				<th class="info2">Fecha:</th>
-				<th class="info2">{{ date("d/m/Y", strtotime($recibo->fecha)) }}</th>
-			</tr>
-		</table>
-		<table class="info1">
-			<tr>
-				<th class="obser">Observaciones:</th>
-			</tr>
-		</table>
-		
+		<p class="recorte"></p>
 	@endforeach
 </body>
 </html>

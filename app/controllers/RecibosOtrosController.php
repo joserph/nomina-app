@@ -1,12 +1,12 @@
 <?php
 
-class RecibosController extends \BaseController
+class RecibosOtrosController extends \BaseController
 {
 	public function index()
 	{
-        $recibos = Recibo::paginate(10);
+        $recibos = Recibosotro::paginate(10);
         $users = User::all();
-		return View::make('recibos.index',array(
+		return View::make('recibosotros.index',array(
             'recibos' => $recibos,
             'users' => $users
         ));
@@ -15,11 +15,11 @@ class RecibosController extends \BaseController
 
 	public function create()
 	{
-		$recibos = new Recibo;
+		$recibos = new Recibosotro;
         $users = User::all();
         $conceptos = Concepto::all();
         
-      	return View::make('recibos.form', array(
+      	return View::make('recibosotros.form', array(
             'recibos' => $recibos, 
             'users' => $users,
             'conceptos' => $conceptos
@@ -30,7 +30,7 @@ class RecibosController extends \BaseController
 	public function store()
 	{
 		// Creamos un nuevo objeto para nuestro nuevo agente
-        $recibos = new Recibo;
+        $recibos = new Recibosotro;
         // Obtenemos la data enviada por el usuario
         $data = Input::all();
         // Total Trabajadores
@@ -53,9 +53,9 @@ class RecibosController extends \BaseController
             // Guardamos el recibo
             $recibos->save(); 
 
-            $recibo_last = DB::table('recibos')->max('id');
+            $recibo_last = DB::table('recibosotros')->max('id');
 
-            $recibos1 = DB::table('recibos')->where('id', '=', $recibo_last)->first();
+            $recibos1 = DB::table('recibosotros')->where('id', '=', $recibo_last)->first();
 
             /* Calculo de los lunes en la quincena. */
             $dia = date("d", strtotime($recibos1->desde));
@@ -80,9 +80,9 @@ class RecibosController extends \BaseController
             /* Creamos las asignaciones y deducciones */
             foreach($conceptos as $concepto)
             {
-                $asigdedus = new Asigdedu;
+                $asigdedus = new Asigdedusotro;
 
-                $asig = Asigdedu::create(array(
+                $asig = Asigdedusotro::create(array(
                     'id_concepto'   => $concepto->id,
                     'porcentaje'    => $concepto->porcentaje,
                     'id_recibo'     => $recibo_last,
@@ -91,8 +91,9 @@ class RecibosController extends \BaseController
                 ));
             }     
 
+               
             // Colocamos las asignaciones y deducciones a los trabajadores basicas automaticamante
-            $itemsAsigs = DB::table('asigdedus')->where('id_recibo', '=', $recibo_last)->get();
+            $itemsAsigs = DB::table('asigdedusotros')->where('id_recibo', '=', $recibo_last)->get();
 
             $contador = 1;
             $asig1 = 0;
@@ -132,9 +133,9 @@ class RecibosController extends \BaseController
             // Agregamos los trabajadores con sus valores predeterminados automatimante
             foreach($trabajadores as $trabajador)
             {
-                $pagos = new Pago;
+                $pagos = new Pagosotro;
 
-                $sueldoDiario = $trabajador->sueldo/30;
+                $sueldoDiario = $trabajador->sueldo_otro/30;
 
                 /* Calculo del Seguro Social */
                 $subSso = 0;
@@ -167,7 +168,7 @@ class RecibosController extends \BaseController
 
                 }else{
                 
-                    $subSso = ($trabajador->sueldo * 12)/52;
+                    $subSso = ($trabajador->sueldo_otro * 12)/52;
                     $sso = (($subSso * $porcentajaSso)/100) * $totalLunes;
                     /* Fin Calculo del Seguro Social */
                     /* Calculo del Paro Forzoso */
@@ -181,8 +182,8 @@ class RecibosController extends \BaseController
                 }
                 
 
-                $trab = Pago::create(array(
-                    'sueldo'        => $trabajador->sueldo,
+                $trab = Pagosotro::create(array(
+                    'sueldo'        => $trabajador->sueldo_otro,
                     'pago'          => $sueldoDiario * 15,
                     'faltas'        => 0,
                     'faltas_ct'     => 0,
@@ -209,27 +210,27 @@ class RecibosController extends \BaseController
             }
             
             // Y Devolvemos una redirección a la acción show para mostrar el agente
-            return Redirect::route('recibos.show', array($recibos->id))
+            return Redirect::route('recibosotros.show', array($recibos->id))
                 ->with('create', 'El recibo ha sido creado correctamente.');
         }
         else
         {
             // En caso de error regresa a la acción create con los datos y los errores encontrados
-			return Redirect::route('recibos.create')->withInput()->withErrors($recibos->errors);
+			return Redirect::route('recibosotros.create')->withInput()->withErrors($recibos->errors);
         }
 	}
 
 
 	public function show($id)
 	{
-		$recibos = Recibo::find($id);
+		$recibos = Recibosotro::find($id);
         $users = User::all();
         $trabajadores = Trabajador::all();
-        $pagos = new Pago;
-        $items = DB::table('pagos')->where('id_recibo', '=', $id)->get();
+        $pagos = new Pagosotro;
+        $items = DB::table('pagosotros')->where('id_recibo', '=', $id)->get();
         $totalT = DB::table('tabajadores')->count();
         $conceptos = Concepto::all();
-        $asigdedus = DB::table('asigdedus')->where('id_recibo', '=', $id)->get();
+        $asigdedus = DB::table('asigdedusotros')->where('id_recibo', '=', $id)->get();
         /* Calculo de los lunes en la quincena. */
         $dia = date("d", strtotime($recibos->desde));
         $mes = date("m", strtotime($recibos->desde));
@@ -254,7 +255,7 @@ class RecibosController extends \BaseController
 			App::abort(404);
 		}
 
-		return View::make('recibos.show', array(
+		return View::make('recibosotros.show', array(
             'recibos' => $recibos,
             'users' => $users,
             'trabajadores' => $trabajadores,
@@ -271,7 +272,7 @@ class RecibosController extends \BaseController
 
 	public function edit($id)
 	{
-		$recibos = Recibo::find($id);
+		$recibos = Recibosotro::find($id);
         $conceptos = Concepto::all();
 
         if (is_null($id))
@@ -279,7 +280,7 @@ class RecibosController extends \BaseController
             App::abort(404);
         }
 
-        return View::make('recibos.form', array(
+        return View::make('recibosotros.form', array(
             'conceptos' => $conceptos
         ))->with('recibos', $recibos);
 	}
@@ -288,7 +289,7 @@ class RecibosController extends \BaseController
 	public function update($id)
 	{
 		// Creamos un nuevo objeto para nuestro nuevo usuario
-        $recibos = Recibo::find($id);
+        $recibos = Recibosotro::find($id);
         
         $trabajadores = Trabajador::all();
         // Si el usuario no existe entonces lanzamos un error 404 :(
@@ -308,15 +309,15 @@ class RecibosController extends \BaseController
             $recibos->fill($data);
             // Guardamos el usuario
             $recibos->save();
-
+            
             foreach($trabajadores as $trabajador)
             {
                 if($trabajador->tipo == 'accionista')
                 {
                     $dias_lab = 0;
                 }
-                $pago = Pago::where('id_recibo', '=', $id)->first();
-                $trab = Pago::where('id_recibo', '=', $id)->update(array(
+                $pago = Pagosotro::where('id_recibo', '=', $id)->first();
+                $trab = Pagosotro::where('id_recibo', '=', $id)->update(array(
                        
                         'dias_lab'      => $dias_lab,
                         'laborados'     => $dias_lab - $pago->faltas_ct,
@@ -325,13 +326,13 @@ class RecibosController extends \BaseController
                     ));
             }
             // Y Devolvemos una redirección a la acción show para mostrar el usuario
-            return Redirect::route('recibos.show', array($recibos->id))
+            return Redirect::route('recibosotros.show', array($recibos->id))
                     ->with('editar', 'El recibo ha sido actualizado correctamente.');
         }
         else
         {
             // En caso de error regresa a la acción edit con los datos y los errores encontrados
-            return Redirect::route('recibos.edit', $recibos->id)
+            return Redirect::route('recibosotros.edit', $recibos->id)
             		->withInput()
             		->withErrors($recibos->errors);
         }
@@ -340,7 +341,7 @@ class RecibosController extends \BaseController
 
 	public function destroy($id)
 	{
-		$recibos = Recibo::find($id);
+		$recibos = Recibosotro::find($id);
         
         if (is_null ($recibos))
         {
@@ -359,7 +360,7 @@ class RecibosController extends \BaseController
         }
         else
         {
-            return Redirect::route('recibos.index')
+            return Redirect::route('recibosotros.index')
             		->with('delete', 'El recibo ha sido eliminado correctamente.');
         }
 	}

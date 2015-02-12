@@ -82,8 +82,12 @@
         'accionista' => 'Accioniste'), null, ['class' => 'form-control']) }}
       </div>
       <div class="col-md-4">
-        {{ Form::label('sueldo', 'Sueldo:') }}
+        {{ Form::label('sueldo', 'Sueldo Base:') }}
         {{ Form::text('sueldo', null, array('class' => 'form-control', 'placeholder' =>'Sueldo del trabajador')) }}
+      </div>
+      <div class="col-md-4">
+        {{ Form::label('sueldo_otro', 'Sueldo Base + Bonos:') }}
+        {{ Form::text('sueldo_otro', null, array('class' => 'form-control', 'placeholder' =>'Sueldo del trabajador')) }}
       </div>
       <div class="col-md-4">
         {{ Form::label('ct', 'Cesta Ticket:') }}

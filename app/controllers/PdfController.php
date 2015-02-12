@@ -35,4 +35,22 @@ class PdfController extends BaseController {
 		return $pdf->stream();
 	}
 
+	public function getIndexOtro($id)
+	{
+		$pagos = DB::table('pagosotros')->where('id_recibo', '=', $id)->get();
+		$trabajadores = Trabajador::all();
+		$recibo = Recibosotro::find($id);
+		$conceptos = Concepto::all();
+		$asigdedus = DB::table('asigdedusotros')->where('id_recibo', '=', $id)->get();
+		$empresa = DB::table('empresas')->first();
+		$pdf = PDF::loadView('recibosotroPdf', array(
+			'pagos' => $pagos,
+			'trabajadores' => $trabajadores,
+			'recibo' => $recibo,
+			'conceptos' => $conceptos,
+			'asigdedus' => $asigdedus,
+			'empresa' => $empresa
+			))->setPaper('Carta');
+		return $pdf->stream();
+	}
 }
