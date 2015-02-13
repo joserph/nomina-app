@@ -20,6 +20,7 @@ class CreateAsigdedusotrosTable extends Migration {
 		    $table->string('porcentaje');
 		    $table->string('unico');
 		    $table->integer('id_user');
+		    $table->integer('id_pago');
 		    $table->integer('update_user');
 		    $table->integer('id_recibo')->unsigned();
           	$table->foreign('id_recibo')->references('id')->on('recibosotros')->onDelete('cascade');

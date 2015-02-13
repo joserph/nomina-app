@@ -14,7 +14,7 @@
 		p.idRecibo{
 			margin-left: 640px;
 			font-size: 12px;
-			margin-top: -40px;
+			margin-top: -45px;
 		}
 		h4.empresa{
 			margin-left: 60px;
@@ -31,11 +31,12 @@
 			margin-bottom: -50px;
 		}
 		p.titulo{
+			color: #000;
 			text-align:center;
 			font-size: 16px;
 			margin: 0 auto;
 			border-radius: 5px;
-			background-color: #125478;
+			background-color: #91D4DA;
 			width: 250px;
 		}
 		table.table{
@@ -82,7 +83,7 @@
 			padding-right: 10px;
 		}
 		.espacio{
-			padding: 25px 0px 25px 0px;
+			padding: 15px 0px 15px 0px;
 		}
 		td.quincena0{
 			font-size: 14px;
@@ -115,17 +116,25 @@
 			padding-right: 611.5px;
 		}
 		p.recorte{
-			padding-top: 0px;
-			padding-bottom: 0px;
+			padding-top: 45px;
+			padding-bottom: -10px;
 		}
 		table.info1{
-			padding-bottom: 33.5px;
+			padding-bottom: 0px;
+		}
+		#total{
+			background-color: #A8A89F;
 		}
 	</style>
 </head>
 <body>
+	<?php
+		$cont = 0;
+	?>
 	@foreach($pagos as $pago)
-		
+		<?php
+			$cont += 1;
+		?>
 		<p class="idRecibo">Recibo No.
 			@foreach($trabajadores as $trabajador)
 				@if($trabajador->id == $pago->id_trabajador)
@@ -215,6 +224,21 @@
 			<tr>
 				@foreach($asigdedus as $asigdedu)
 					@foreach($conceptos as $concepto)
+						@if($pago->asig6 == $asigdedu->id)
+							@if($asigdedu->id_concepto == $concepto->id)
+								<td class="quincena0">{{ $concepto->codigo }} {{ $concepto->descripcion }}</td>
+							@endif
+						@endif
+					@endforeach
+				@endforeach
+				<td class="quincena1"></td>
+				<td class="quincena1"></td>
+				<td class="quincena1">{{ number_format($pago->vales,2,",",".") }}</td>
+				<td class="quincena1"></td>
+			</tr>
+			<tr>
+				@foreach($asigdedus as $asigdedu)
+					@foreach($conceptos as $concepto)
 						@if($pago->asig3 == $asigdedu->id)
 							@if($asigdedu->id_concepto == $concepto->id)
 								<td class="quincena0">{{ $concepto->codigo }} {{ $concepto->descripcion }}</td>
@@ -260,7 +284,7 @@
 			<tr>
 				<?php
 					$totalAsig = $pago->pago + $pago->pago_ct;
-					$totalDeduc = $pago->ivss + $pago->pf + $pago->ph;
+					$totalDeduc = $pago->vales + $pago->ivss + $pago->pf + $pago->ph;
 				?>
 				<th class="total1" colspan="2">Totales</th>
 				<th class="total1">{{ number_format($totalAsig,2,",",".") }}</th>
@@ -272,7 +296,7 @@
 					$totalPago = $totalAsig - $totalDeduc
 				?>
 				<th class="total1" colspan="3">Neto a cobrar</th>
-				<th class="total1">{{ number_format($totalPago,2,",",".") }}</th>
+				<th class="total1" id="total">{{ number_format($totalPago,2,",",".") }}</th>
 				<th class="total1"></th>
 			</tr>
 		</table>
@@ -289,7 +313,9 @@
 				<th class="obser">Observaciones:</th>
 			</tr>
 		</table>
-		<p class="recorte"></p>
+		@if($cont % 2 != 0)
+			<p class="recorte">----------------------------------------------------------------------------------------------------------------------------------------</p>
+		@endif
 	@endforeach
 </body>
 </html>

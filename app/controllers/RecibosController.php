@@ -36,7 +36,7 @@ class RecibosController extends \BaseController
         // Total Trabajadores
         $totalT = DB::table('tabajadores')->count();
 
-        $trabajadores = Trabajador::all();
+        $trabajadores = DB::table('tabajadores')->where('estatus', '=', 'activo')->get();
 
         $users = User::all();
 

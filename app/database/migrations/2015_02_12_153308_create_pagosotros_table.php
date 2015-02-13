@@ -31,6 +31,7 @@ class CreatePagosotrosTable extends Migration {
 		    $table->integer('asig3');
 		    $table->integer('asig4');
 		    $table->integer('asig5');
+		    $table->integer('asig6');
 		    $table->string('lunes');
 		    $table->string('ivss');
 		    $table->string('pf');

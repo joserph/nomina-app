@@ -85,7 +85,7 @@
         <td>{{ $trabajador->nombre }} {{ $trabajador->apellido }}</td> 
         @foreach($items as $item)
           @if($trabajador->id == $item->id_trabajador)
-            <td>{{ number_format($item->sueldo,2,",",".") }}</td>
+            <td>{{ $item->sueldo }}</td>
             @if($item->asig3 > 0)
               <td>SI</td>
             @else 

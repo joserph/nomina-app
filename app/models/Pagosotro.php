@@ -24,6 +24,7 @@ class Pagosotro extends Eloquent implements UserInterface, RemindableInterface
 	    'asig3',
 	    'asig4',
 	    'asig5',
+	    'asig6',
 	    'lunes',
 	    'ivss',
 	    'pf',

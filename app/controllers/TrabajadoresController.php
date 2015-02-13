@@ -4,7 +4,7 @@ class TrabajadoresController extends \BaseController
 {
 	public function index()
 	{
-        $trabajadores = Trabajador::paginate(10);
+        $trabajadores = Trabajador::paginate(50);
         $users = User::all();
 		return View::make('trabajadores.index',array(
             'trabajadores' => $trabajadores,

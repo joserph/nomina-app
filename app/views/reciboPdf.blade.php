@@ -14,7 +14,7 @@
 		p.idRecibo{
 			margin-left: 640px;
 			font-size: 12px;
-			margin-top: -40px;
+			margin-top: -45px;
 		}
 		h4.empresa{
 			margin-left: 60px;
@@ -31,6 +31,7 @@
 			margin-bottom: -50px;
 		}
 		p.titulo{
+			color: #fff;
 			text-align:center;
 			font-size: 16px;
 			margin: 0 auto;
@@ -115,8 +116,14 @@
 			padding-right: 611.5px;
 		}
 		p.recorte{
-			padding-top: 50px;
-			padding-bottom: 30px;
+			padding-top: 45px;
+			padding-bottom: 35px;
+		}
+		#total{
+			background-color: #A8A89F;
+		}
+		#total2{
+			background-color: #A8A89F;
 		}
 	</style>
 </head>
@@ -269,7 +276,7 @@
 					$totalPago = $totalAsig - $totalDeduc
 				?>
 				<th class="total1" colspan="3">Neto a cobrar</th>
-				<th class="total1">{{ number_format($totalPago,2,",",".") }}</th>
+				<th class="total1" id="total">{{ number_format($totalPago,2,",",".") }}</th>
 				<th class="total1"></th>
 			</tr>
 		</table>
@@ -289,7 +296,13 @@
 		<p class="recorte">----------------------------------------------------------------------------------------------------------------------------------------</p>
 		<!--//////////////******************************//////////////////////-->
 
-		<p class="idRecibo">Recibo No. {{ $pago->id }}</p>
+		<p class="idRecibo">Recibo No. 
+			@foreach($trabajadores as $trabajador)
+				@if($trabajador->id == $pago->id_trabajador)
+					{{ $trabajador->id }}
+				@endif
+			@endforeach
+		</p>
 		<h4 class="empresa">{{ $empresa->nombre }} <span>Copia Trabajador</span></h4>
 		<p class="rif">RIF.: {{ $empresa->rif }}</p>
 		<p class="titulo">RECIBO DE NOMINA</p>
@@ -429,7 +442,7 @@
 					$totalPago = $totalAsig - $totalDeduc
 				?>
 				<th class="total1" colspan="3">Neto a cobrar</th>
-				<th class="total1">{{ number_format($totalPago,2,",",".") }}</th>
+				<th class="total1" id="total2">{{ number_format($totalPago,2,",",".") }}</th>
 				<th class="total1"></th>
 			</tr>
 		</table>

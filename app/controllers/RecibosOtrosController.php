@@ -36,7 +36,7 @@ class RecibosOtrosController extends \BaseController
         // Total Trabajadores
         $totalT = DB::table('tabajadores')->count();
 
-        $trabajadores = Trabajador::all();
+        $trabajadores = DB::table('tabajadores')->where('estatus', '=', 'activo')->get();
 
         $users = User::all();
 
@@ -101,6 +101,7 @@ class RecibosOtrosController extends \BaseController
             $asig3 = 0;
             $asig4 = 0;
             $asig5 = 0;
+            $asig6 = 0;
 
             foreach($itemsAsigs as $itemsAsig)
             {
@@ -129,6 +130,11 @@ class RecibosOtrosController extends \BaseController
                     $asig5 = $itemsAsig->id;
                     $contador += 1;
                 }
+                elseif($contador == 6)
+                {
+                    $asig6 = $itemsAsig->id;
+                    $contador += 1;
+                }
             }
             // Agregamos los trabajadores con sus valores predeterminados automatimante
             foreach($trabajadores as $trabajador)
@@ -136,6 +142,8 @@ class RecibosOtrosController extends \BaseController
                 $pagos = new Pagosotro;
 
                 $sueldoDiario = $trabajador->sueldo_otro/30;
+
+                $sueldoDiario2 = $trabajador->sueldo/30;
 
                 /* Calculo del Seguro Social */
                 $subSso = 0;
@@ -168,11 +176,12 @@ class RecibosOtrosController extends \BaseController
 
                 }else{
                 
-                    $subSso = ($trabajador->sueldo_otro * 12)/52;
+                    $subSso = ($trabajador->sueldo * 12)/52;
+
                     $sso = (($subSso * $porcentajaSso)/100) * $totalLunes;
                     /* Fin Calculo del Seguro Social */
                     /* Calculo del Paro Forzoso */
-                    $quincena = $sueldoDiario * 15;
+                    $quincena = $sueldoDiario2 * 15;
 
                     $paroForzoso = ($quincena * $porcentajePf)/100;
                     /* Fin Calculo del Paro Forzoso */
@@ -198,6 +207,7 @@ class RecibosOtrosController extends \BaseController
                     'asig3'         => $asig3,
                     'asig4'         => $asig4,
                     'asig5'         => $asig5,
+                    'asig6'         => $asig6,
                     'lunes'         => $totalLunes,
                     'ivss'          => $sso,
                     'pf'            => $paroForzoso,
