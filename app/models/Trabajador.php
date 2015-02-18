@@ -22,6 +22,7 @@ class Trabajador extends Eloquent implements UserInterface, RemindableInterface
 	    'rif',
 	    'fecha_i',
 	    'cargo',
+        'asegurado',
         'tipo',
 	    'sueldo',
         'sueldo_otro',

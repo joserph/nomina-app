@@ -37,7 +37,6 @@
   <p>Fecha: <mark>{{ date("d/m/Y", strtotime($recibos->fecha)) }}</mark></p>
   
   <br>
-  Total Lunes: {{ $totalLunes }}
   <h3>Asignaciones y Deducciones</h3>
   <ul class="list-group">
     @foreach($conceptos as $concepto)
@@ -80,41 +79,43 @@
         $cont = 0;
       ?>
       @foreach ($trabajadores as $trabajador)
-      <tr>
-        <td>{{ $cont += 1 }}</td> 
-        <td>{{ $trabajador->nombre }} {{ $trabajador->apellido }}</td> 
-        @foreach($items as $item)
-          @if($trabajador->id == $item->id_trabajador)
-            <td>{{ $item->sueldo }}</td>
-            @if($item->asig3 > 0)
-              <td>SI</td>
-            @else 
-              <td>NO</td>
-            @endif
-            @if($item->asig4 > 0)
-              <td>SI</td>
-            @else 
-              <td>NO</td>
-            @endif
-            @if($item->asig5 > 0)
-              <td>SI</td>
-            @else 
-              <td>NO</td>
-            @endif
-            <td>{{ $item->laborados }}</td>
-            <td>{{ number_format($item->pago_ct,2,",",".") }}</td>
-            <td>{{ $item->faltas_ct }}</td>
-            <td>{{ number_format($item->vales,2,",",".") }}</td>
-            <td>{{ $item->dias }}</td>
-            <td>{{ number_format($item->pago,2,",",".") }}</td>
-            <td>
-              <a href="{{ route('pagosotros.edit', $item->id) }}" class="btn btn-warning btn-xs"> Editar</a>
-            </td>
-          @endif
-        @endforeach
-      </tr>
+        @if($trabajador->estatus == "activo")
+          <tr>
+            <td>{{ $cont += 1 }}</td> 
+            <td>{{ $trabajador->nombre }} {{ $trabajador->apellido }}</td> 
+            @foreach($items as $item)
+              @if($trabajador->id == $item->id_trabajador)
+                <td>{{ number_format($item->sueldo,2,",",".") }}</td>
+                @if($item->asig3 > 0)
+                  <td>SI</td>
+                @else 
+                  <td>NO</td>
+                @endif
+                @if($item->asig4 > 0)
+                  <td>SI</td>
+                @else 
+                  <td>NO</td>
+                @endif
+                @if($item->asig5 > 0)
+                  <td>SI</td>
+                @else 
+                  <td>NO</td>
+                @endif
+                <td>{{ $item->laborados }}</td>
+                <td>{{ number_format($item->pago_ct,2,",",".") }}</td>
+                <td>{{ $item->faltas_ct }}</td>
+                <td>{{ number_format($item->vales,2,",",".") }}</td>
+                <td>{{ $item->dias }}</td>
+                <td>{{ number_format($item->pago,2,",",".") }}</td>
+                <td>
+                  <a href="{{ route('pagosotros.edit', $item->id) }}" class="btn btn-warning btn-xs"> Editar</a>
+                </td>
+              @endif
+            @endforeach
+          </tr>
+        @endif
       @endforeach    
     </table>
   </div> 
-  <a href="{{ route('reportesotroPdf', $recibos->id) }}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Reporte</a>
+  <a href="{{ route('reportesotroPdf', $recibos->id) }}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Recibos</a>
 @stop

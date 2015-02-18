@@ -76,6 +76,12 @@
         {{ Form::text('cargo', null, array('class' => 'form-control', 'placeholder' =>'Cargo del trabajador')) }}
       </div>
       <div class="col-md-4">
+        {{ Form::label('asegurado', 'Asegurado:') }}
+        {{ Form::select('asegurado', array(
+        'si' => 'Si',
+        'no' => 'No'), null, ['class' => 'form-control']) }}
+      </div>
+      <div class="col-md-4">
         {{ Form::label('tipo', 'Tipo de Trabajador:') }}
         {{ Form::select('tipo', array(
         'empleado' => 'Empleado',

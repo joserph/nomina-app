@@ -29,6 +29,7 @@ class CreateTrabajadoresTable extends Migration {
 		    $table->string('rif');
 		    $table->date('fecha_i');
 		    $table->string('cargo');
+		    $table->string('asegurado');
 		    $table->string('tipo');
 		    $table->string('sueldo');
 		    $table->string('sueldo_otro');

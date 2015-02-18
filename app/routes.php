@@ -73,6 +73,11 @@ Route::group(array('before' => 'auth'), function()
 			'uses' => 'PdfController@getIndex'
 		));
 
+		Route::get('/reportePdfTrab/{id}', array(
+			'as' => 'reportePdfTrab',
+			'uses' => 'PdfController@getIndexTrab'
+		));
+
 		Route::resource('asigdedu', 'AsigDeduccionesController');
 
 		Route::resource('empresas', 'EmpresasController');

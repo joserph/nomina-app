@@ -22,6 +22,25 @@ class PdfController extends BaseController {
 		return $pdf->stream();
 	}
 
+	public function getIndexTrab($id)
+	{
+		$pagos = DB::table('pagos')->where('id_recibo', '=', $id)->get();
+		$trabajadores = Trabajador::all();
+		$recibo = Recibo::find($id);
+		$conceptos = Concepto::all();
+		$asigdedus = DB::table('asigdedus')->where('id_recibo', '=', $id)->get();
+		$empresa = DB::table('empresas')->first();
+		$pdf = PDF::loadView('reportePdfTrab', array(
+			'pagos' => $pagos,
+			'trabajadores' => $trabajadores,
+			'recibo' => $recibo,
+			'conceptos' => $conceptos,
+			'asigdedus' => $asigdedus,
+			'empresa' => $empresa
+			))->setPaper('Carta');
+		return $pdf->stream();
+	}
+
 	public function getIndexCons($id)
 	{
 		$constancia = Constancia::find($id);

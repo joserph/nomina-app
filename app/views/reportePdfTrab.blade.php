@@ -136,13 +136,13 @@
 			$cont += 1;
 		?>
 		<p class="idRecibo">Recibo No. 
-		@foreach($trabajadores as $trabajador)
-			@if($trabajador->id == $pago->id_trabajador)
-				{{ $trabajador->id }}
-			@endif
-		@endforeach
+			@foreach($trabajadores as $trabajador)
+				@if($trabajador->id == $pago->id_trabajador)
+					{{ $trabajador->id }}
+				@endif
+			@endforeach
 		</p>
-		<h4 class="empresa">{{ $empresa->nombre }}</h4>
+		<h4 class="empresa">{{ $empresa->nombre }} <span>Copia Trabajador</span></h4>
 		<p class="rif">RIF.: {{ $empresa->rif }}</p>
 		<p class="titulo">RECIBO DE NOMINA</p>
 		<table class="table">
@@ -281,7 +281,7 @@
 					$totalPago = $totalAsig - $totalDeduc
 				?>
 				<th class="total1" colspan="3">Neto a cobrar</th>
-				<th class="total1" id="total">{{ number_format($totalPago,2,",",".") }}</th>
+				<th class="total1" id="total2">{{ number_format($totalPago,2,",",".") }}</th>
 				<th class="total1"></th>
 			</tr>
 		</table>
@@ -300,7 +300,7 @@
 		</table>
 		@if($cont % 2 != 0)
 			<p class="recorte">----------------------------------------------------------------------------------------------------------------------------------------</p>
-		@endif	
+		@endif		
 	@endforeach
 </body>
 </html>
