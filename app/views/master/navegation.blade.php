@@ -16,7 +16,8 @@
 		      	<li><a href="{{ route('trabajadores.index') }}">Trabajadores</a></li>
 		      	<li><a href="{{ route('recibos.index') }}">Recibos</a></li>
 		      	<li><a href="{{ route('representantes.index') }}">Representantes</a></li>
-		      	<li><a href="{{ route('constancias.index') }}">Constancias</a></li> 	    
+		      	<li><a href="{{ route('constancias.index') }}">Constancias</a></li> 	
+		      	<li><a href="{{ route('nominas.index') }}">Nóminas</a></li>    
 		    </ul>	 
 		    <ul class="nav navbar-nav navbar-right">	   
 		      <li class="dropdown">

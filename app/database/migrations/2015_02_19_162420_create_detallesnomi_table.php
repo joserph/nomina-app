@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrabajadoresTable extends Migration {
+class CreateDetallesnomiTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,33 +12,30 @@ class CreateTrabajadoresTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tabajadores', function($table)
+		Schema::create('detallesnomi', function($table)
 		{
 		    $table->increments('id');
 
-		    $table->string('email');
+		    
 		    $table->string('nombre');
 		    $table->string('apellido');
 		    $table->string('ci');
-		    $table->integer('edad');
 		    $table->string('sexo');
 		    $table->date('fecha_n');
 		    $table->string('nacionalidad');
 		    $table->string('direccion', 500);
-		    $table->string('tlf');
-		    $table->string('cel');
-		    $table->string('rif');
+		    $table->string('rivss');
 		    $table->date('fecha_i');
+		    $table->date('fecha_r');
 		    $table->string('cargo');
 		    $table->string('asegurado');
-		    $table->string('tipo');
 		    $table->string('sueldo');
-		    $table->string('sueldo_otro');
-		    $table->string('ct');
 		    $table->string('estatus');
 		    $table->integer('id_user');
 		    $table->integer('update_user');
-
+		    $table->integer('id_nomina')->unsigned();
+          	$table->foreign('id_nomina')->references('id')->on('nominas')->onDelete('cascade');
+		   
 		    $table->timestamps();
 		});
 	}
@@ -50,7 +47,7 @@ class CreateTrabajadoresTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('tabajadores');
+		Schema::dropIfExists('detallesnomi');
 	}
 
 }

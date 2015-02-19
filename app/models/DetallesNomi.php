@@ -5,32 +5,28 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Trabajador extends Eloquent implements UserInterface, RemindableInterface 
+class DetallesNomi extends Eloquent implements UserInterface, RemindableInterface 
 {
 
 	protected $fillable = array(
-		'email',
+		
 	    'nombre',
 	    'apellido',
 	    'ci',
-	    'edad',
         'sexo',
 	    'fecha_n',
 	    'nacionalidad',
 	    'direccion',
-	    'tlf',
-	    'cel',
-	    'rif',
+	    'rivss',
 	    'fecha_i',
+        'fecha_r',
 	    'cargo',
         'asegurado',
-        'tipo',
 	    'sueldo',
-        'sueldo_otro',
-        'ct',
         'estatus',
 	    'id_user',
-	    'update_user');
+	    'update_user',
+        'id_nomina');
 
 	use UserTrait, RemindableTrait;
 
@@ -39,28 +35,17 @@ class Trabajador extends Eloquent implements UserInterface, RemindableInterface
         $rules = array(
             'nombre'  		=> 'required',
             'apellido'		=> 'required',
-            'ci'   			=> 'required|unique:tabajadores',
-            'edad'			=> '',
+            'ci'   			=> 'required',
             'fecha_n'    	=> 'required',
             'nacionalidad'	=> 'required',
             'direccion'  	=> 'required',
-            'tlf'			=> '',
-            'cel'    		=> 'required',
-            'email'    		=> 'email',
-            'rif'  			=> '',
             'fecha_i'  		=> 'required',
             'cargo'			=> 'required',
             'sueldo'   		=> 'required',
-            'tipo'          => 'required',
             'estatus'       => 'required'
             
         );
-
-        if ($this->exists)
-        {
-            //Evitamos que la regla “unique” tome en cuenta el rif del Agente actual
-			$rules['ci'] .= ',ci,' . $this->id;
-        }        
+       
         
         $validator = Validator::make($data, $rules);
         
@@ -79,5 +64,5 @@ class Trabajador extends Eloquent implements UserInterface, RemindableInterface
 	 *
 	 * @var string
 	 */
-	protected $table = 'tabajadores';
+	protected $table = 'detallesnomi';
 }

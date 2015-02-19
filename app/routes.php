@@ -101,6 +101,10 @@ Route::group(array('before' => 'auth'), function()
 			'as' => 'reportesotroPdf',
 			'uses' => 'PdfController@getIndexOtro'
 		));
+
+		Route::resource('nominas', 'NominasController');
+
+		Route::resource('detallesnomi', 'DetallesNomiController');
 	});
 
 });

@@ -40,6 +40,12 @@
         {{ Form::text('edad', null, array('class' => 'form-control', 'placeholder' =>'Edad del trabajador')) }}
       </div>
       <div class="col-md-4">
+        {{ Form::label('sexo', 'Sexo:') }}
+        {{ Form::select('sexo', array(
+        'm' => 'Masculino',
+        'f' => 'Femenino'), null, ['class' => 'form-control']) }}
+      </div>
+      <div class="col-md-4">
         {{ Form::label('fecha_n', 'Fecha de Nacimiento:') }}
         {{ Form::input('date', 'fecha_n', null, array('class' => 'form-control', 'placeholder' => 'dd/mm/aaaa', 'autofocus'=>'autofocus')) }}
       </div>
