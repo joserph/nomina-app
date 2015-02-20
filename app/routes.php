@@ -105,6 +105,11 @@ Route::group(array('before' => 'auth'), function()
 		Route::resource('nominas', 'NominasController');
 
 		Route::resource('detallesnomi', 'DetallesNomiController');
+
+		Route::get('/reporteIvss/{id}', array(
+			'as' => 'reporteIvss',
+			'uses' => 'PdfController@getIndexIvss'
+		));
 	});
 
 });

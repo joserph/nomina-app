@@ -95,6 +95,7 @@ class NominasController extends \BaseController
         $users = User::all();
         $representantes = Representante::all();
         $empresa = Empresa::find(1);
+        $detallesnomi = DB::table('detallesnomi')->where('id_nomina', '=', $id)->get();
 		if (is_null($nominas))
 		{
 			App::abort(404);
@@ -103,7 +104,8 @@ class NominasController extends \BaseController
 		return View::make('nominas.show', array(
             'nominas' => $nominas,
             'users' => $users,
-            'representantes' => $representantes
+            'representantes' => $representantes,
+            'detallesnomi' => $detallesnomi
             )
         )->with('empresa', $empresa);
 	}
