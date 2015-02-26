@@ -81,13 +81,15 @@ class PdfController extends BaseController {
 		$conceptos = Concepto::all();
 		$asigdedus = DB::table('asigdedusotros')->where('id_recibo', '=', $id)->get();
 		$empresa = DB::table('empresas')->first();
+		$detallesIvss = DB::table('detallesnomi')->where('id_nomina', '=', $id)->orderBy('cargo', 'asc')->get();
 		$pdf = PDF::loadView('reporteIvss', array(
 			'pagos' => $pagos,
 			'trabajadores' => $trabajadores,
 			'recibo' => $recibo,
 			'conceptos' => $conceptos,
 			'asigdedus' => $asigdedus,
-			'empresa' => $empresa
+			'empresa' => $empresa,
+			'detallesIvss' => $detallesIvss
 			))->setPaper('Legal')->setOrientation('landscape');
 		return $pdf->stream();
 	}
