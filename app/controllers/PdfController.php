@@ -75,21 +75,15 @@ class PdfController extends BaseController {
 
 	public function getIndexIvss($id)
 	{
-		$pagos = DB::table('pagosotros')->where('id_recibo', '=', $id)->get();
-		$trabajadores = Trabajador::all();
-		$recibo = Recibosotro::find($id);
-		$conceptos = Concepto::all();
-		$asigdedus = DB::table('asigdedusotros')->where('id_recibo', '=', $id)->get();
+		$nomina = Nomina::find($id);
 		$empresa = DB::table('empresas')->first();
 		$detallesIvss = DB::table('detallesnomi')->where('id_nomina', '=', $id)->orderBy('cargo', 'asc')->get();
+		$representantes = Representante::all();
 		$pdf = PDF::loadView('reporteIvss', array(
-			'pagos' => $pagos,
-			'trabajadores' => $trabajadores,
-			'recibo' => $recibo,
-			'conceptos' => $conceptos,
-			'asigdedus' => $asigdedus,
+			'nomina' => $nomina,
 			'empresa' => $empresa,
-			'detallesIvss' => $detallesIvss
+			'detallesIvss' => $detallesIvss,
+			'representantes' => $representantes
 			))->setPaper('Legal')->setOrientation('landscape');
 		return $pdf->stream();
 	}
