@@ -31,6 +31,8 @@ class CreateTrabajadoresTable extends Migration {
 		    $table->date('fecha_i');
 		    $table->string('cargo');
 		    $table->string('asegurado');
+		    $table->string('registroivss');
+		    $table->date('fecha_ivss');
 		    $table->string('tipo');
 		    $table->string('sueldo');
 		    $table->string('sueldo_otro');

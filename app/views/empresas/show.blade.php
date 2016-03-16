@@ -2,7 +2,11 @@
 @section ('content')
 
    	<legend><h3>{{ $empresa->nombre }}</h3></legend>
-   	
+   	<ol class="breadcrumb">
+	   	<li><a href="{{ URL::route('home') }}">Inicio</a></li>
+	    <li><a href="{{ route('empresas.index') }}">Empresa</a></li>
+	    <li class="active">{{ $empresa->nombre }}</li>
+	</ol>
 	<blockquote>
 	<dl class="dl-horizontal">
 		<dt>Nombre:</dt>
@@ -13,6 +17,10 @@
 		<dd>{{ $empresa->tlf }}</dd>
 		<dt>Dirección:</dt>
 		<dd>{{ $empresa->direccion }}</dd>
+		<dt>Nº Patronal IVSS:</dt>
+		<dd>{{ $empresa->n_patronal }}</dd>
+		<dt>Fecha Incripción IVSS:</dt>
+		<dd>{{ date("d/m/Y", strtotime($empresa->f_incripcion)) }}</dd>
 	</dl>
 	<small><strong>Creado el 
 		<cite title="Source Title">

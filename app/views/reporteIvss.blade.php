@@ -104,6 +104,9 @@
 			padding-left: 50px;
 			padding-right: 50px;
 		}
+		td.f5{
+			text-transform: uppercase;
+		}
 		div.principal{
 			margin-top: 10px;
 		}
@@ -138,7 +141,7 @@
 			width: 250px;
 		}
 		footer{
-			margin-top: 160px;
+			margin-top: 8px;
 		}
 		p.legal{
 			font-size: 7.5px;
@@ -195,7 +198,7 @@
 					<td class="info in2">{{ $empresa->nombre }}</td>
 					<td class="info in2">{{ $empresa->rif }}</td>
 					<td class="info in2">{{ $empresa->direccion }}</td>
-					<td class="info">D15884205</td>
+					<td class="info">{{ $empresa->n_patronal }}</td>
 				</tr>
 			</table>
 		</div>
@@ -233,11 +236,11 @@
 					<th class="fecha f2">AÑO</th>
 				</tr>
 				<tr>
-					<td class="fecha">29</td>
-					<td class="fecha">05</td>
-					<td class="fecha">2003</td>
+					<td class="fecha">{{ date("d", strtotime($empresa->f_incripcion)) }}</td>
+					<td class="fecha">{{ date("m", strtotime($empresa->f_incripcion)) }}</td>
+					<td class="fecha">{{ date("Y", strtotime($empresa->f_incripcion)) }}</td>
 					<td class="fecha f4"></td>
-					<td class="fecha">Mínino</td>
+					<td class="fecha f5">{{ $nomina->riesgo }}</td>
 				</tr>
 			</table>
 		</div>
@@ -284,7 +287,7 @@
 				@foreach($detallesIvss as $detalles)
 				<tr>
 					<td class="principal pr6">{{ $detalles->apellido }} {{ $detalles->nombre }}</td>
-					@if($detalles->nacionalidad == 'Venezolano')
+					@if($detalles->nacionalidad == 'Venezolano' || $detalles->nacionalidad == 'Venezolana')
 						<td class="principal">X</td>
 						<td class="principal"></td>
 					@else
@@ -303,10 +306,10 @@
 						<td class="principal">X</td>
 					@endif
 					<td class="principal pr6">{{ $detalles->direccion }}</td>
-					<td class="principal">V-0{{ $detalles->ci }}</td>
-					<td class="principal">{{ date("d", strtotime($detalles->fecha_i)) }}</td>
-					<td class="principal">{{ date("m", strtotime($detalles->fecha_i)) }}</td>
-					<td class="principal">{{ date("y", strtotime($detalles->fecha_i)) }}</td>
+					<td class="principal">{{ $detalles->registroivss }}</td>
+					<td class="principal">{{ date("d", strtotime($detalles->fecha_ivss)) }}</td>
+					<td class="principal">{{ date("m", strtotime($detalles->fecha_ivss)) }}</td>
+					<td class="principal">{{ date("y", strtotime($detalles->fecha_ivss)) }}</td>
 					<td class="principal"></td>
 					<td class="principal"></td>
 					<td class="principal"></td>
@@ -374,9 +377,9 @@
 					</th>
 				</tr>
 				<tr>
-					<td class="pie">22</td>
-					<td class="pie">09</td>
-					<td class="pie">2014</td>
+					<td class="pie">{{ date("d", strtotime($nomina->fecha_public)) }}</td>
+					<td class="pie">{{ date("m", strtotime($nomina->fecha_public)) }}</td>
+					<td class="pie">{{ date("Y", strtotime($nomina->fecha_public)) }}</td>
 					<td class="pie">FIRMA Y SELLO</td>
 				</tr>
 			</table>

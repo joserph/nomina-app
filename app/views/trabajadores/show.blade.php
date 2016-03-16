@@ -2,7 +2,16 @@
 @section ('content')
 
    	<legend><h3>{{ $trabajadores->nombre }} {{ $trabajadores->apellido }}</h3></legend>
-   	
+   	<ol class="breadcrumb">
+    	<li><a href="{{ URL::route('home') }}">Inicio</a></li>
+    	<li><a href="{{ route('trabajadores.index') }}">Trabajadores</a></li>
+    	<li class="active">{{ $trabajadores->nombre }} {{ $trabajadores->apellido }}</li>
+  	</ol>
+   	<?php
+   		$anioNacimiento = date("Y", strtotime($trabajadores->fecha_n));
+   		$anioActual = date("Y");
+   		$edad = $anioActual - $anioNacimiento;
+   	?>
 	<blockquote>
 	<dl class="dl-horizontal">
 		<dt>Nombre:</dt>
@@ -12,7 +21,7 @@
 		<dt>C.I.:</dt>
 		<dd>{{ number_format($trabajadores->ci,0,",",".") }}</dd>
 		<dt>Edad:</dt>
-		<dd>{{ $trabajadores->edad }}</dd>
+		<dd>{{ $edad }}</dd>
 		<dt>Fecha de Nacimiento:</dt>
 		<dd>{{ date("d/m/Y", strtotime($trabajadores->fecha_n)) }}</dd>
 		<dt>Nacionalidad:</dt>

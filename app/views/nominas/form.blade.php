@@ -24,20 +24,24 @@
     @endif
     <div class="row">
      
-      <div class="col-md-6">
+      <div class="col-md-4">
         {{ Form::label('desde', 'Desde:') }}
         {{ Form::input('date', 'desde', null, array('class' => 'form-control', 'placeholder' => 'dd/mm/aaaa')) }}
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         {{ Form::label('hasta', 'Hasta:') }}
         {{ Form::input('date', 'hasta', null, array('class' => 'form-control', 'placeholder' => 'dd/mm/aaaa')) }}
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         {{ Form::label('riesgo', 'Riesgo:') }}
         {{ Form::select('riesgo', array(
         'minimo' => 'Mínimo',
         'medio' => 'Medio',
         'alto' => 'Alto'), null, ['class' => 'form-control']) }}
+      </div>
+      <div class="col-md-4">
+        {{ Form::label('fecha_public', 'Fecha Publicación:') }}
+        {{ Form::input('date', 'fecha_public', null, array('class' => 'form-control', 'placeholder' => 'dd/mm/aaaa')) }}
       </div>
       
       <input type="hidden" name="id_empresa" class="form-control" value="{{ $empresa->id }}">

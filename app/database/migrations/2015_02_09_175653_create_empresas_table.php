@@ -20,6 +20,8 @@ class CreateEmpresasTable extends Migration {
 		    $table->string('rif');
 		    $table->string('direccion');
 		    $table->string('tlf');
+		    $table->string('n_patronal');
+		    $table->date('f_incripcion');
 		    $table->integer('id_user');
 		    $table->integer('update_user');
 		   

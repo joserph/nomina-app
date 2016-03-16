@@ -4,7 +4,7 @@ class RecibosOtrosController extends \BaseController
 {
 	public function index()
 	{
-        $recibos = Recibosotro::paginate(10);
+        $recibos = Recibosotro::orderBy('id', 'DESC')->paginate(10);
         $users = User::all();
 		return View::make('recibosotros.index',array(
             'recibos' => $recibos,
@@ -171,8 +171,6 @@ class RecibosOtrosController extends \BaseController
                     $paroForzoso = 0;
                    
                     $politicaH = 0;
-
-                    $dias_lab = 0;
 
                 }else{
                 

@@ -4,7 +4,7 @@ class NominasController extends \BaseController
 {
 	public function index()
 	{
-        $nominas = Nomina::paginate(10);
+        $nominas = Nomina::orderBy('id', 'DESC')->paginate(10);
         $users = User::all();
         $representantes = Representante::all();
         $empresa = Empresa::find(1);
@@ -67,19 +67,21 @@ class NominasController extends \BaseController
                     'nacionalidad'  => $trabajador->nacionalidad,
                     'direccion'     => $trabajador->direccion,
                     'fecha_i'       => $trabajador->fecha_i,
+                    'registroivss'  => $trabajador->registroivss,
+                    'fecha_ivss'    => $trabajador->fecha_ivss,
                     'cargo'         => $trabajador->cargo,
                     'sueldo'        => $trabajador->sueldo,
                     'estatus'       => $trabajador->estatus,
-                    'id_user'       => Auth:: user()->id,
-                    'update_user'   => Auth:: user()->id
+                    'id_user'       => Auth::user()->id,
+                    'update_user'   => Auth::user()->id
                 ));
             }
 
             $detallesnomina = DB::table('detallesnomi')->where('id_nomina', '=', $last_nomina)->get();
             // Y Devolvemos una redirección a la acción show para mostrar el agente
-            return Redirect::route('nominas.show', array($nominas->id,
-                'detallesnomina' => $detallesnomina))
-                    ->with('create', 'La nómina de Seguro Social ha sido creado correctamente.');
+            return Redirect::route('nominas.show', array($nominas->id))
+                ->with('detallesnomina', $detallesnomina)
+                ->with('create', 'La nómina de Seguro Social ha sido creado correctamente.');
         }
         else
         {

@@ -56,6 +56,8 @@
     }
   }
 </script>
+  <h3>{{ $trabajadores->nombre }} {{ $trabajadores->apellido }}</h3>
+  <hr>
   {{ Form::model($pagos, $form_data, array('role' => 'form')) }}
   @include ('admin/errors', array('errors' => $errors))
   <input type="hidden" id="sueldo1" value="{{ $pagos->sueldo }}" onkeyup="calcular(1)">

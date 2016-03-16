@@ -11,9 +11,14 @@
 ?>
 @section ('title') {{ $action }} trabajador | @stop
 @section('content')
-  
+
 	{{ Form::model($trabajadores, $form_data, array('role' => 'form')) }}
   <legend><h3 class="form-signin-heading">{{ $action }} trabajador</h3></legend>
+  <ol class="breadcrumb">
+    <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+    <li><a href="{{ route('trabajadores.index') }}">Trabajadores</a></li>
+    <li class="active">{{ $action }} trabajador</li>
+  </ol>
   @include ('admin/errors', array('errors' => $errors))
     
     @if($action == "Agregar")
@@ -36,10 +41,6 @@
         {{ Form::text('ci', null, array('class' => 'form-control', 'placeholder' =>'Cédula de identidad del trabajador')) }}
       </div>
       <div class="col-md-2">
-        {{ Form::label('edad', 'Edad:') }}
-        {{ Form::text('edad', null, array('class' => 'form-control', 'placeholder' =>'Edad del trabajador')) }}
-      </div>
-      <div class="col-md-4">
         {{ Form::label('sexo', 'Sexo:') }}
         {{ Form::select('sexo', array(
         'm' => 'Masculino',
@@ -84,8 +85,16 @@
       <div class="col-md-4">
         {{ Form::label('asegurado', 'Asegurado:') }}
         {{ Form::select('asegurado', array(
-        'si' => 'Si',
-        'no' => 'No'), null, ['class' => 'form-control']) }}
+        'no' => 'No',
+        'si' => 'Si'), null, ['class' => 'form-control']) }}
+      </div>
+      <div class="col-md-4">
+        <label for="" id="registroivss1">Registro IVSS</label>
+        {{ Form::text('registroivss', null, array('class' => 'form-control', 'placeholder' =>'Número de registro IVSS')) }}
+      </div>
+      <div class="col-md-4">
+        <label for="" id="fecha_ivss1">Fecha de Ingreso IVSS</label>
+        {{ Form::input('date', 'fecha_ivss', null, array('class' => 'form-control', 'placeholder' => 'dd/mm/aaaa')) }}
       </div>
       <div class="col-md-4">
         {{ Form::label('tipo', 'Tipo de Trabajador:') }}

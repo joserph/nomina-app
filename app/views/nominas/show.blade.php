@@ -5,6 +5,7 @@
   
   	<p>Desde: <mark>{{ date("d/m/Y", strtotime($nominas->desde)) }}</mark></p>
   	<p>Hasta: <mark>{{ date("d/m/Y", strtotime($nominas->hasta)) }}</mark></p>
+  	<p>Fecha de Publicación: <mark>{{ date("d/m/Y", strtotime($nominas->fecha_public)) }}</mark></p>
   
 	<br>
 	<div class="row">
@@ -27,7 +28,6 @@
 		        <th class="text-center" >S. Mensual</th>           
 		        <th class="text-center" >S. Semenal</th>
 		        <th class="text-center" >S. Diario</th>       
-		        <th class="text-center" >Acciones</th>
 	      	</tr>
 		    <?php 
 		        $cont = 0;
@@ -48,12 +48,9 @@
 	        	?>
 	        	<td>{{ number_format($semanal,2,",",".") }}</td>
 	        	<td>{{ number_format($diario,2,",",".") }}</td>
-                <td>
-                  	
-                </td>
-	          	</tr>
+	         </tr>
 	      	@endforeach    
 	    </table>
   </div> 
-  <a href="{{ route('reporteIvss', $nominas->id) }}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Nómina</a>
+  <a href="{{ route('reporteIvss', $nominas->id) }}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Generar Nómina IVSS</a>
 @stop

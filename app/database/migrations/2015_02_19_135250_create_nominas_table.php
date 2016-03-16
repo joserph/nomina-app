@@ -20,6 +20,7 @@ class CreateNominasTable extends Migration {
 		    $table->string('hasta');
 		    $table->integer('id_representante');
 		    $table->string('riesgo');
+		    $table->string('fecha_public');
 		    $table->integer('id_empresa');
 		    $table->integer('id_user');
 		    $table->integer('update_user');

@@ -74,10 +74,11 @@
       @foreach ($trabajadores as $trabajador)
         @if($trabajador->estatus == "activo")
           <tr>
-            <td>{{ $cont += 1 }}</td> 
-            <td>{{ $trabajador->nombre }} {{ $trabajador->apellido }}</td> 
+            
             @foreach($items as $item)
               @if($trabajador->id == $item->id_trabajador)
+                <td>{{ $cont += 1 }}</td> 
+                <td>{{ $trabajador->nombre }} {{ $trabajador->apellido }}</td> 
                 <td>{{ number_format($item->sueldo,2,",",".") }}</td>
                 @if($item->asig3 > 0)
                   <td>SI</td>

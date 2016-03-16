@@ -14,7 +14,7 @@
 		p.idRecibo{
 			margin-left: 640px;
 			font-size: 12px;
-			margin-top: -45px;
+			margin-top: -35px;
 		}
 		h4.empresa{
 			margin-left: 60px;
@@ -83,13 +83,13 @@
 			padding-right: 10px;
 		}
 		.espacio{
-			padding: 15px 0px 15px 0px;
+			padding: 16px 0px 16px 0px;
 		}
 		td.quincena0{
 			font-size: 14px;
 		}
 		td.quincena1{
-			font-size: 13px;
+			font-size: 12px;
 			text-align: center;
 		}
 		th.total1{
@@ -206,7 +206,7 @@
 				<td class="espacio"></td>
 				<td class="espacio"></td>
 			</tr>
-			<tr>
+			<tr class="quincena2">
 				@foreach($asigdedus as $asigdedu)
 					@foreach($conceptos as $concepto)
 						@if($pago->asig2 == $asigdedu->id)
@@ -216,11 +216,12 @@
 						@endif
 					@endforeach
 				@endforeach
+				
 				<td class="quincena1">{{ $pago->laborados }}</td>
 				<td class="quincena1">{{ number_format($pago->pago_ct,2,",",".") }}</td>
 				<td class="quincena1"></td>
 				<td class="quincena1"></td>
-			</tr>
+			</tr>			
 			<tr>
 				@foreach($asigdedus as $asigdedu)
 					@foreach($conceptos as $concepto)

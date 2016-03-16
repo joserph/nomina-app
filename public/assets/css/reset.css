@@ -71,7 +71,7 @@ html {
         url(../fonts/portcreb.svg);
 }
 .h1prin{
-  font-family: fuente-uno, Verdana;
+  font-family: fuente-uno, Tahoma, Verdana;
   font-size: 24px;
   letter-spacing: -2px;
 }
@@ -110,7 +110,7 @@ html {
 
 /*****************/
 .h1prin2{
-  font-family: fuente-uno, Verdana;
+  font-family: fuente-uno, Tahoma, Verdana;
   font-size: 30px;
   letter-spacing: -2px;
 }
@@ -160,14 +160,14 @@ html {
   color: #2c3e50;
 }
 .titulopre{
-  font-family: fuente-uno, Verdana;
+  font-family: fuente-uno, Tahoma, Verdana;
   font-size: 35px;
 }
 .autorpre{
   font-size: 20px;
 }
 .titulopre2{
-  font-family: fuente-uno, Verdana;
+  font-family: fuente-uno, Tahoma, Verdana;
   font-size: 30px;
 }
 .autorpre2{

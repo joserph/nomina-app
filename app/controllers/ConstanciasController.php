@@ -4,7 +4,7 @@ class ConstanciasController extends \BaseController
 {
 	public function index()
 	{
-        $constancias = Constancia::paginate(10);
+        $constancias = Constancia::orderBy('id', 'DESC')->paginate(10);
         $users = User::all();
 		return View::make('constancias.index',array(
             'constancias' => $constancias,

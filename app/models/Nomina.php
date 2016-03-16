@@ -16,6 +16,7 @@ class Nomina extends Eloquent implements UserInterface, RemindableInterface
 	    'hasta',
 	    'id_representante',
 	    'riesgo',
+        'fecha_public',
         'id_empresa',
         'id_user',
         'update_user');

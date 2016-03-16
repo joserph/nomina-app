@@ -5,7 +5,10 @@
 	<h1><a href="{{ route('conceptos.create') }}" class="btn btn-success">Crear Concepto</a></h1>
     
     <legend><h2>Conceptos</h2></legend>
-
+    <ol class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li class="active">Conceptos</li>
+    </ol>
     <table class="table table-striped table-hover table-responsive">
         <tr>
             <th>#</th>

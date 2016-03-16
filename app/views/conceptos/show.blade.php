@@ -1,8 +1,12 @@
 @extends ('master.layout')
 @section ('content')
 
-    <legend><h3>{{ $conceptos->descripcion }}</h3></legend>
-    
+  <legend><h3>{{ $conceptos->descripcion }}</h3></legend>
+  <ol class="breadcrumb">
+    <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+    <li><a href="{{ route('conceptos.index') }}">Conceptos</a></li>
+    <li class="active">{{ $conceptos->descripcion }}</li>
+  </ol>
   <blockquote>
   <dl class="dl-horizontal">
     <dt>Código:</dt>

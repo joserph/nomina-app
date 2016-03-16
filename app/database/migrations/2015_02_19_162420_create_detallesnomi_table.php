@@ -28,6 +28,8 @@ class CreateDetallesnomiTable extends Migration {
 		    $table->date('fecha_i');
 		    $table->date('fecha_r');
 		    $table->string('cargo');
+		    $table->string('registroivss');
+		    $table->date('fecha_ivss');
 		    $table->string('asegurado');
 		    $table->string('sueldo');
 		    $table->string('estatus');

@@ -20,6 +20,8 @@ class DetallesNomi extends Eloquent implements UserInterface, RemindableInterfac
 	    'rivss',
 	    'fecha_i',
         'fecha_r',
+        'registroivss',
+        'fecha_ivss',
 	    'cargo',
         'asegurado',
 	    'sueldo',

@@ -12,6 +12,8 @@ class Empresa extends Eloquent implements UserInterface, RemindableInterface
 		'rif',
 	    'direccion',
         'tlf',
+        'n_patronal',
+        'f_incripcion',
 	    'id_user',
 	    'update_user');
 
