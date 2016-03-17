@@ -2,12 +2,15 @@
 
 @section('content')
     
-	<h1><a href="{{ route('trabajadores.create') }}" class="btn btn-success">Agregar Trabajador</a></h1>
-    <legend><h2>Trabajadores</h2></legend>
+
+    <legend><h3><i class="fa fa-users fa-fw"></i> Trabajadores</h3></legend>
+
     <ol class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Trabajadores</li>
     </ol>
+
+    <h3><a href="{{ route('trabajadores.create') }}" class="btn btn-success">Agregar Trabajador</a></h3>
     <ul class="nav nav-tabs">
         <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Trabajadores Activos</a></li>
         <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false">Trabajadores Retirados</a></li>

@@ -55,11 +55,6 @@ Route::group(array('before' => 'auth'), function()
 
 	Route::group(array('before' => 'editor'), function()
 	{
-		Route::get('/editor', array(
-			'as' => 'editor',
-			'uses' => 'EditorController@getIndex'
-		));
-
 		Route::resource('trabajadores', 'TrabajadoresController');
 
 		Route::resource('recibos', 'RecibosController');
@@ -111,6 +106,7 @@ Route::group(array('before' => 'auth'), function()
 			'uses' => 'PdfController@getIndexIvss'
 		));
 	});
+	Route::resource('profile', 'ProfileController');
 
 });
 

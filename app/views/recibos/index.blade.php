@@ -2,9 +2,13 @@
 
 @section('content')
         
-	<h1><a href="{{ route('recibos.create') }}" class="btn btn-success">Crear Recibo</a></h1>
+    <legend><h3><i class="fa fa-file-text-o fa-fw"></i> Recibos de Nómina</h3></legend>
     
-    <legend><h2>Recibos de Nómina</h2></legend>
+    <ol class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li class="active">Recibos de Nómina</li>
+    </ol>
+    <h3><a href="{{ route('recibos.create') }}" class="btn btn-success">Crear Recibo</a></h3>
 
     <table class="table table-striped table-hover table-responsive">
         <tr>

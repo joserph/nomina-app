@@ -2,10 +2,12 @@
 
 @section('content')
         
-	<h1><a href="{{ route('constancias.create') }}" class="btn btn-success">Crear Constancia</a></h1>
-    
-    <legend><h2>Constancias</h2></legend>
-
+    <legend><h3>Constancias</h3></legend>
+    <ol class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li class="active">Constancias</li>
+    </ol>
+    <h3><a href="{{ route('constancias.create') }}" class="btn btn-success">Crear Constancia</a></h3>
     <table class="table table-striped table-hover table-responsive">
         <tr>
             <th>#</th>

@@ -2,10 +2,12 @@
 
 @section('content')
         
-	<h1><a href="{{ route('recibosotros.create') }}" class="btn btn-success">Crear Recibo</a></h1>
-    
-    <legend><h2>Recibos Otros</h2></legend>
-
+    <legend><h3>Recibos Otros</h3></legend>
+    <ol class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li class="active">Recibos Otros</li>
+    </ol>
+    <h3><a href="{{ route('recibosotros.create') }}" class="btn btn-success">Crear Recibo</a></h3>
     <table class="table table-striped table-hover table-responsive">
         <tr>
             <th>#</th>

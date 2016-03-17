@@ -1,11 +1,13 @@
 @extends('master.layout')
 
 @section('content')
-        
-	<h1><a href="{{ route('nominas.create') }}" class="btn btn-success">Crear Nómina</a></h1>
-    
-    <legend><h2>Nóminas</h2></legend>
 
+    <legend><h3>Nóminas</h3></legend>
+    <ol class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li class="active">Nóminas</li>
+    </ol>
+    <h3><a href="{{ route('nominas.create') }}" class="btn btn-success">Crear Nómina</a></h3>
     <table class="table table-striped table-hover table-responsive">
         <tr>
             <th>#</th>

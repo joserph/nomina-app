@@ -1,10 +1,12 @@
 @extends ('master.layout')
 @section ('content')
 
-   	<legend><h3>{{ $empresa->nombre }}</h3></legend>
+   	<ol class="breadcrumb">
+   	<legend><h3><i class="fa fa-building fa-fw"></i> {{ $empresa->nombre }}</h3></legend>
    	<ol class="breadcrumb">
 	   	<li><a href="{{ URL::route('home') }}">Inicio</a></li>
-	    <li><a href="{{ route('empresas.index') }}">Empresa</a></li>
+	    <li><a href="{{ route('empresas.index') }}">{{ $empresa->nombre }}</a></li>
+
 	    <li class="active">{{ $empresa->nombre }}</li>
 	</ol>
 	<blockquote>

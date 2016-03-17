@@ -2,10 +2,12 @@
 
 @section('content')
         
-	<h1><a href="{{ route('representantes.create') }}" class="btn btn-success">Crear representante</a></h1>
-    
-    <legend><h2>Representantes</h2></legend>
-
+    <legend><h3>Representantes</h3></legend>
+    <ol class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li class="active">Representantes</li>
+    </ol>
+    <h3><a href="{{ route('representantes.create') }}" class="btn btn-success">Crear representante</a></h3>
     <table class="table table-striped table-hover table-responsive">
         <tr>
             <th>#</th>

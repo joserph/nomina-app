@@ -6,10 +6,7 @@
 	{{ HTML::style('assets/css/reset.css', array('media' => 'screen')) }}
 	{{ HTML::style('assets/css/yeti-bootstrap.css', array('media' => 'screen')) }}
 	{{ HTML::style('assets/css/font-awesome.min.css', array('media' => 'screen')) }}  
-	<!--Javascript-->
-	{{ HTML::script('assets/js/jquery.min.js') }}
-	{{ HTML::script('assets/js/bootstrap.js') }}
-	{{ HTML::script('assets/js/menuresponsive.js') }}
+	
 </head>
 <body>
 	<div class="container">
@@ -41,5 +38,9 @@
 		
 		@yield('content')
 	</div>
+	<!--Javascript-->
+	{{ HTML::script('assets/js/jquery.min.js') }}
+	{{ HTML::script('assets/js/bootstrap.js') }}
+	{{ HTML::script('assets/js/menuresponsive.js') }}
 </body>
 </html>

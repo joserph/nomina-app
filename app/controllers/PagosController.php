@@ -78,6 +78,7 @@ class PagosController extends \BaseController
         $asigdedus = DB::table('asigdedus')->where('id_recibo', '=', $pagos->id_recibo)->get();
         $conceptos = DB::table('conceptos')->get();
         $totalAsig = DB::table('asigdedus')->where('id_recibo', '=', $pagos->id_recibo)->count();
+        $recibo = Recibo::where('id', '=', $pagos->id_recibo)->first();
 
         if (is_null($id))
         {
@@ -89,7 +90,8 @@ class PagosController extends \BaseController
             'conceptos' => $conceptos
             ))->with('pagos', $pagos)
                 ->with('trabajadores', $trabajadores)
-                    ->with('totalAsig', $totalAsig);
+                    ->with('totalAsig', $totalAsig)
+                        ->with('recibo', $recibo);
 	}
 
 

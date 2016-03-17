@@ -1,8 +1,21 @@
 @extends('master.layout')
 
 @section('content')
+    
+    <legend><h3><i class="fa fa-building fa-fw"></i> {{ $empresa->nombre }}</h3></legend>
+    <ol class="breadcrumb">
+        <li><a href="{{ URL::route('home') }}">Inicio</a></li>
+        <li class="active">
+            @if($totalEmpresa == 0)
+                
+            @else
+                {{ $empresa->nombre }}
+            @endif
+        </li>
+    </ol>
+    
     @if($totalEmpresa == 0)
-	   <h1><a href="{{ route('empresas.create') }}" class="btn btn-success">Agregar Empresa</a></h1>
+	   <h3><a href="{{ route('empresas.create') }}" class="btn btn-success">Agregar Empresa</a></h3>
     @else
         <div class="row">
             <h1 class="text-center">{{ $empresa->nombre }}</h1>
