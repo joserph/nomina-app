@@ -13,7 +13,7 @@
 @section('content')
 
 	{{ Form::model($trabajadores, $form_data, array('role' => 'form')) }}
-  <legend><h3 class="form-signin-heading">{{ $action }} trabajador</h3></legend>
+  <legend><h3><i class="fa fa-edit fa-fw"></i> {{ $action }} trabajador</h3></legend>
   <ol class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
     <li><a href="{{ route('trabajadores.index') }}">Trabajadores</a></li>

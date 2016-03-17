@@ -1,7 +1,7 @@
 @extends ('master.layout')
 @section ('content')
 
-   	<legend><h3>{{ $trabajadores->nombre }} {{ $trabajadores->apellido }}</h3></legend>
+   	<legend><h3><i class="fa fa-user fa-fw"></i> {{ $trabajadores->nombre }} {{ $trabajadores->apellido }}</h3></legend>
    	<ol class="breadcrumb">
     	<li><a href="{{ URL::route('home') }}">Inicio</a></li>
     	<li><a href="{{ route('trabajadores.index') }}">Trabajadores</a></li>

@@ -13,7 +13,7 @@
 @section('content')
   
 	{{ Form::model($conceptos, $form_data, array('role' => 'form')) }}
-  <legend><h3 class="form-signin-heading">{{ $action }} concepto</h3></legend>
+  <legend><h3><i class="fa fa-edit fa-fw"></i> {{ $action }} concepto</h3></legend>
   <ol class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
     <li><a href="{{ route('conceptos.index') }}">Conceptos</a></li>

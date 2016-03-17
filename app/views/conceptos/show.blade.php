@@ -1,7 +1,7 @@
 @extends ('master.layout')
 @section ('content')
 
-  <legend><h3>{{ $conceptos->descripcion }}</h3></legend>
+  <legend><h3><i class="fa fa-book fa-fw"></i> {{ $conceptos->descripcion }}</h3></legend>
   <ol class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
     <li><a href="{{ route('conceptos.index') }}">Conceptos</a></li>

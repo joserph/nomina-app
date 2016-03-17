@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <legend><h3>Conceptos</h3></legend>
+    <legend><h3><i class="fa fa-book fa-fw"></i> Conceptos</h3></legend>
     <ol class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Conceptos</li>

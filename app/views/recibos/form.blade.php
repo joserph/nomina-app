@@ -12,7 +12,7 @@
 @section ('title') {{ $action }} recibo | @stop
 @section('content')
   
-  <legend><h3 class="form-signin-heading">{{ $action }} recibo</h3></legend>
+  <legend><h3><i class="fa fa-edit fa-fw"></i> {{ $action }} recibo</h3></legend>
 	{{ Form::model($recibos, $form_data, array('role' => 'form')) }}
   
   @include ('admin/errors', array('errors' => $errors))

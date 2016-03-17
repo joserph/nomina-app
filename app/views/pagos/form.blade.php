@@ -56,7 +56,7 @@
     }
   }
 </script>
-  <h3>{{ $trabajadores->nombre }} {{ $trabajadores->apellido }}</h3>
+  <h3><i class="fa fa-edit fa-fw"></i> {{ $trabajadores->nombre }} {{ $trabajadores->apellido }}</h3>
   <hr>
   {{ Form::model($pagos, $form_data, array('role' => 'form')) }}
   @include ('admin/errors', array('errors' => $errors))
@@ -104,16 +104,6 @@
     @endif
    
   {{ Form::close() }}
-  <p>
-    @if ($action == 'Editar')  
-      {{ Form::model($pagos, array('route' => array('pagos.destroy', $pagos->id), 'method' => 'DELETE', 'role' => 'form')) }}
-        <div class="row">
-          <div class="form-group col-md-4">
-              {{ Form::submit('Eliminar pago', array('class' => 'btn btn-danger')) }}
-          </div>
-        </div>
-      {{ Form::close() }}
-    @endif
-  </p>
+  
 
 @stop

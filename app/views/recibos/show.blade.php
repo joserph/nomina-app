@@ -22,14 +22,8 @@
   }
 
 </script>
-<legend><h3>Periodo {{ date("d/m/Y", strtotime($recibos->desde)) }} al {{ date("d/m/Y", strtotime($recibos->hasta)) }}</h3></legend>
-  
-  <p>Desde: <mark>{{ date("d/m/Y", strtotime($recibos->desde)) }}</mark></p>
-  <p>Hasta: <mark>{{ date("d/m/Y", strtotime($recibos->hasta)) }}</mark></p>
-  <p>Dias Laborables: <mark>{{ $recibos->dias_lab }}</mark></p>
-  <p>Fecha: <mark>{{ date("d/m/Y", strtotime($recibos->fecha)) }}</mark></p>
-  
-  <br>
+<legend><h3>Recibos periodo {{ date("d/m/Y", strtotime($recibos->desde)) }} al {{ date("d/m/Y", strtotime($recibos->hasta)) }}</h3></legend>
+
   <h3>Asignaciones y Deducciones</h3>
   <ul class="list-group">
     @foreach($conceptos as $concepto)

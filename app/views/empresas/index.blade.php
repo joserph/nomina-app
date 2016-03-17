@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <legend><h3>{{ $empresa->nombre }}</h3></legend>
+    <legend><h3><i class="fa fa-building fa-fw"></i> {{ $empresa->nombre }}</h3></legend>
     <ol class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">

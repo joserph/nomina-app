@@ -12,10 +12,10 @@
 @section ('title') {{ $action }} empresa | @stop
 @section('content')
   
-  <legend><h3 class="form-signin-heading">{{ $action }} empresa</h3></legend>
+  <legend><h3 class="form-signin-heading"><i class="fa fa-edit fa-fw"></i> {{ $action }} empresa</h3></legend>
   <ol class="breadcrumb">
     <li><a href="{{ URL::route('home') }}">Inicio</a></li>
-    <li><a href="{{ route('empresas.index') }}">Empresa</a></li>
+    <li><a href="{{ route('empresas.index') }}">{{ $empresa->nombre }}</a></li>
     <li class="active">{{ $action }} empresa</li>
   </ol>
 	{{ Form::model($empresa, $form_data, array('role' => 'form')) }}
@@ -62,16 +62,5 @@
     @endif
    
   {{ Form::close() }}
-  <p>
-    @if ($action == 'Editar')  
-      {{ Form::model($empresa, array('route' => array('empresas.destroy', $empresa->id), 'method' => 'DELETE', 'role' => 'form')) }}
-        <div class="row">
-          <div class="form-group col-md-4">
-              {{ Form::submit('Eliminar empresa', array('class' => 'btn btn-danger')) }}
-          </div>
-        </div>
-      {{ Form::close() }}
-    @endif
-  </p>
 
 @stop

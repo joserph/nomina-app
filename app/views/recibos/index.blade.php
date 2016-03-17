@@ -2,7 +2,7 @@
 
 @section('content')
         
-    <legend><h3>Recibos de Nómina</h3></legend>
+    <legend><h3><i class="fa fa-file-text-o fa-fw"></i> Recibos de Nómina</h3></legend>
     <ol class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Recibos de Nómina</li>

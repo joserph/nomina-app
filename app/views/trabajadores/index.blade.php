@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <legend><h3>Trabajadores</h3></legend>
+    <legend><h3><i class="fa fa-users fa-fw"></i> Trabajadores</h3></legend>
     <ol class="breadcrumb">
         <li><a href="{{ URL::route('home') }}">Inicio</a></li>
         <li class="active">Trabajadores</li>
