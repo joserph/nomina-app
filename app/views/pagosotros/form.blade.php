@@ -72,11 +72,11 @@
   @endif
   <div class="row">  
     <div class="col-md-2">
-      {{ Form::label('faltas_ct', 'Nº Faltas:') }} 
+      {{ Form::label('faltas_ct', 'Faltas Cesta Ticket:') }} 
       {{ Form::text('faltas_ct', null, array('class' => 'form-control', 'placeholder' =>'', 'id' => 'faltas_ct1', 'onkeyup' => 'calcular(1)')) }}
     </div>
     <div class="col-md-3">
-      {{ Form::label('faltas', 'Faltas nuevo trabajador:') }} 
+      {{ Form::label('faltas', 'Faltas Quincena:') }} 
       {{ Form::text('faltas', null, array('class' => 'form-control', 'placeholder' =>'', 'id' => 'faltas1', 'readonly', 'onkeyup' => 'calcular(1)')) }}
     </div>
     <div class="checkbox col-md-3">
@@ -88,11 +88,11 @@
     </div>
     <div class="col-md-4">
       {{ Form::label('pago', 'Pago Sueldo:') }}
-      {{ Form::text('pago', null, array('class' => 'form-control', 'placeholder' =>'Sueldo', 'id' => 'pago1', 'onkeyup' => 'calcular(1)')) }}
+      {{ Form::text('pago', null, array('class' => 'form-control', 'placeholder' =>'Sueldo', 'id' => 'pago1', 'readonly', 'onkeyup' => 'calcular(1)')) }}
     </div>  
     <div class="col-md-4">
       {{ Form::label('pago_ct', 'Pago Cesta Ticket:') }}
-      {{ Form::text('pago_ct', null, array('class' => 'form-control', 'placeholder' =>'Sueldo', 'id' => 'pago_ct1', 'onkeyup' => 'calcular(1)')) }}
+      {{ Form::text('pago_ct', null, array('class' => 'form-control', 'placeholder' =>'Sueldo', 'id' => 'pago_ct1', 'readonly', 'onkeyup' => 'calcular(1)')) }}
     </div>
     <input type="hidden" name="laborados" id="laborados1" value="{{ $pagos->laborados }}" onkeyup="calcular(1)"> 
     <input type="hidden" name="dias" id="dias1" value="{{ $pagos->dias }}" onkeyup="calcular(1)">    

@@ -150,15 +150,15 @@ class RecibosOtrosController extends \BaseController
                 $sso = 0; 
                 foreach($itemsAsigs as $itemsAsig)
                 {
-                    if($asig3 == $itemsAsig->id)
+                    if($asig2 == $itemsAsig->id)
                     {
                         $porcentajaSso = $itemsAsig->porcentaje;
                     }
-                    if($asig4 == $itemsAsig->id)
+                    if($asig3 == $itemsAsig->id)
                     {
                         $porcentajePf = $itemsAsig->porcentaje;
                     }
-                    if($asig5 == $itemsAsig->id)
+                    if($asig4 == $itemsAsig->id)
                     {
                         $porcentajePh = $itemsAsig->porcentaje;
                     }

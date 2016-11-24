@@ -83,7 +83,7 @@
 			padding-right: 10px;
 		}
 		.espacio{
-			padding: 16px 0px 16px 0px;
+			padding: 12px 0px 12px 0px;
 		}
 		td.quincena0{
 			font-size: 14px;
@@ -180,6 +180,7 @@
 				<th class="desc1">Deducciones</th>
 				<th class="desc1">Saldo/Acum.</th>
 			</tr>
+			<!-- Quincena -->
 			<tr class="quincena2">
 				@foreach($asigdedus as $asigdedu)
 					@foreach($conceptos as $concepto)
@@ -199,6 +200,8 @@
 				?>
 				<td class="quincena1">{{ number_format($acum,2,",",".") }}</td>
 			</tr>
+			<!-- Fin Quincena -->
+
 			<tr>
 				<td class="espacio"></td>
 				<td class="espacio"></td>
@@ -206,7 +209,33 @@
 				<td class="espacio"></td>
 				<td class="espacio"></td>
 			</tr>
+			<!-- Vales -->
 			<tr class="quincena2">
+				@foreach($asigdedus as $asigdedu)
+					@foreach($conceptos as $concepto)
+						@if($pago->asig5 == $asigdedu->id)
+							@if($asigdedu->id_concepto == $concepto->id)
+								<td class="quincena0">{{ $concepto->codigo }} {{ $concepto->descripcion }}</td>
+							@endif
+						@endif
+					@endforeach
+				@endforeach
+				
+				<td class="quincena1"></td>
+				<td class="quincena1"></td>
+				<td class="quincena1">{{ number_format($pago->vales,2,",",".") }}</td>
+				<td class="quincena1"></td>
+			</tr>
+			<!-- Fin Vales -->
+			<tr>
+				<td class="espacio"></td>							
+				<td class="espacio"></td>
+				<td class="espacio"></td>
+				<td class="espacio"></td>
+				<td class="espacio"></td>
+			</tr>	
+			<!-- Fin IVSS -->		
+			<tr>
 				@foreach($asigdedus as $asigdedu)
 					@foreach($conceptos as $concepto)
 						@if($pago->asig2 == $asigdedu->id)
@@ -216,27 +245,13 @@
 						@endif
 					@endforeach
 				@endforeach
-				
-				<td class="quincena1">{{ $pago->laborados }}</td>
-				<td class="quincena1">{{ number_format($pago->pago_ct,2,",",".") }}</td>
 				<td class="quincena1"></td>
 				<td class="quincena1"></td>
-			</tr>			
-			<tr>
-				@foreach($asigdedus as $asigdedu)
-					@foreach($conceptos as $concepto)
-						@if($pago->asig6 == $asigdedu->id)
-							@if($asigdedu->id_concepto == $concepto->id)
-								<td class="quincena0">{{ $concepto->codigo }} {{ $concepto->descripcion }}</td>
-							@endif
-						@endif
-					@endforeach
-				@endforeach
-				<td class="quincena1"></td>
-				<td class="quincena1"></td>
-				<td class="quincena1">{{ number_format($pago->vales,2,",",".") }}</td>
+				<td class="quincena1">{{ number_format($pago->ivss,2,",",".") }}</td>
 				<td class="quincena1"></td>
 			</tr>
+			<!-- Fin IVSS -->
+			<!-- Fin Paro Forzoso -->
 			<tr>
 				@foreach($asigdedus as $asigdedu)
 					@foreach($conceptos as $concepto)
@@ -249,9 +264,11 @@
 				@endforeach
 				<td class="quincena1"></td>
 				<td class="quincena1"></td>
-				<td class="quincena1">{{ number_format($pago->ivss,2,",",".") }}</td>
+				<td class="quincena1">{{ number_format($pago->pf,2,",",".") }}</td>
 				<td class="quincena1"></td>
 			</tr>
+			<!-- Fin Paro Forzoso -->
+			<!-- Fin Politica H. -->
 			<tr>
 				@foreach($asigdedus as $asigdedu)
 					@foreach($conceptos as $concepto)
@@ -264,24 +281,11 @@
 				@endforeach
 				<td class="quincena1"></td>
 				<td class="quincena1"></td>
-				<td class="quincena1">{{ number_format($pago->pf,2,",",".") }}</td>
-				<td class="quincena1"></td>
-			</tr>
-			<tr>
-				@foreach($asigdedus as $asigdedu)
-					@foreach($conceptos as $concepto)
-						@if($pago->asig5 == $asigdedu->id)
-							@if($asigdedu->id_concepto == $concepto->id)
-								<td class="quincena0">{{ $concepto->codigo }} {{ $concepto->descripcion }}</td>
-							@endif
-						@endif
-					@endforeach
-				@endforeach
-				<td class="quincena1"></td>
-				<td class="quincena1"></td>
 				<td class="quincena1">{{ number_format($pago->ph,2,",",".") }}</td>
 				<td class="quincena1"></td>
 			</tr>
+			<!-- Fin Politica H. -->
+			
 			<tr>
 				<?php
 					$totalAsig = $pago->pago + $pago->pago_ct;

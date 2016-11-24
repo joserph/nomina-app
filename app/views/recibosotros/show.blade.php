@@ -72,7 +72,7 @@
         <th>Faltas</th>    
         <th>Vales</th>
         <th>D. a Pagar</th>
-        <th>Total Pago</th>    
+        <th>Total Pago Sueldo</th>    
         <th>Acciones</th>
       </tr>
       <?php 
@@ -104,9 +104,10 @@
                 <td>{{ $item->laborados }}</td>
                 <td>{{ number_format($item->pago_ct,2,",",".") }}</td>
                 <td>{{ $item->faltas_ct }}</td>
-                <td>{{ number_format($item->vales,2,",",".") }}</td>
+                <td>{{ number_format($item->vales,2,",",".") }}</td> 
                 <td>{{ $item->dias }}</td>
-                <td>{{ number_format($item->pago,2,",",".") }}</td>
+                <?php $totalAPagar = $item->pago - $item->vales; ?>
+                <td>{{ number_format($totalAPagar,2,",",".") }}</td>
                 <td>
                   <a href="{{ route('pagosotros.edit', $item->id) }}" class="btn btn-warning btn-xs"> Editar</a>
                 </td>
